@@ -186,7 +186,7 @@ const main = async () => {
     (await fs.promises.readFile(config.GITHUB_EVENT_PATH)).toString()
   );
   console.log('event', event);
-  if (event && !event.head_commit.message.includes('Build action')) {
+  if (event && event.head_commit.message.includes('Build action:')) {
     return;
   }
   if (!event) {
