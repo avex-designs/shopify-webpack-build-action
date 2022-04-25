@@ -185,15 +185,6 @@ const main = async () => {
   const event = JSON.parse(
     (await fs.promises.readFile(config.GITHUB_EVENT_PATH)).toString()
   );
-  console.log(
-    'msg',
-    event.head_commit.message,
-    event.head_commit.message.includes('Build action:')
-  );
-  if (event && event.head_commit.message.includes('Build action:')) {
-    console.log('Repeated from Build action, aborting.');
-    return;
-  }
   if (!event) {
     throw new Error('Action was unable to complete. No event provided.');
   }
