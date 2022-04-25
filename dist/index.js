@@ -133,8 +133,8 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     const config = returnConfig();
     console.log('Parsing the workflow event...');
     const event = JSON.parse((yield fs.promises.readFile(config.GITHUB_EVENT_PATH)).toString());
-    console.log('event', event);
     if (event && event.head_commit.message.includes('Build action:')) {
+        console.log('Repeated from Build action, aborting.');
         return;
     }
     if (!event) {
