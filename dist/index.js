@@ -113,7 +113,7 @@ const returnConfig = () => {
         REPO: selectedRepo,
         BRANCH: process.env.BRANCH,
         FOLDER: process.env.FOLDER || '.',
-        MESSAGE: process.env.MESSAGE || 'Build: ({sha}) {msg}',
+        MESSAGE: process.env.MESSAGE || 'Build action: ({sha}) {msg}',
         URL: selectedRepo !== 'self' ? githubRepoURL.href : githubRepoURL,
     };
     return config;
@@ -198,7 +198,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     //   await fs.promises.unlink(entry);
     // }
     console.log(`Copying all files from the target folder "${path.resolve(process.cwd(), config.FOLDER)}"...`);
-    yield exec(`cp -ru "${path.resolve(process.cwd(), config.FOLDER)}"/ ./`, {
+    yield exec(`cp -r "${path.resolve(process.cwd(), config.FOLDER)}"/ ./`, {
         env: CHILD_ENV,
         cwd: TMP_REPO_DIR,
     }).catch((err) => {
