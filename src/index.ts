@@ -273,7 +273,7 @@ const main = async () => {
       config.FOLDER
     )}"...`
   );
-  await exec(`cp -ru "${path.resolve(process.cwd(), config.FOLDER)}"/ ./`, {
+  await exec(`cp -rT "${path.resolve(process.cwd(), config.FOLDER)}"/ ./`, {
     env: CHILD_ENV,
     cwd: TMP_REPO_DIR,
   }).catch((err) => {
