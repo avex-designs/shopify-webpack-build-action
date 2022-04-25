@@ -177,6 +177,8 @@ const isThisAGitRepo = async (dir) => {
     .catch(() => false);
 };
 
+console.log(github.event.head_commit.message)
+
 const main = async () => {
   console.log('Generating the config...');
   const config = returnConfig();
