@@ -177,7 +177,7 @@ const isThisAGitRepo = async (dir) => {
     .catch(() => false);
 };
 
-console.log(github.event.head_commit.message)
+
 
 const main = async () => {
   console.log('Generating the config...');
@@ -187,6 +187,7 @@ const main = async () => {
   const event = JSON.parse(
     (await fs.promises.readFile(config.GITHUB_EVENT_PATH)).toString()
   );
+  console.log('event', event)
   if (!event) {
     throw new Error('Action was unable to complete. No event provided.');
   }
