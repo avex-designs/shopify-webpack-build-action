@@ -160,7 +160,7 @@ const returnConfig = (): ConfigOutput => {
     REPO: selectedRepo,
     BRANCH: process.env.BRANCH,
     FOLDER: process.env.FOLDER || '.',
-    MESSAGE: process.env.MESSAGE || 'Build: ({sha}) {msg}',
+    MESSAGE: process.env.MESSAGE || 'Build action: ({sha}) {msg}',
     URL: selectedRepo !== 'self' ? githubRepoURL.href : githubRepoURL,
   };
 
@@ -188,6 +188,9 @@ const main = async () => {
     (await fs.promises.readFile(config.GITHUB_EVENT_PATH)).toString()
   );
   console.log('event', event)
+  if(event && !event.head_commit.message.includes('Build action')){
+    return 
+  }
   if (!event) {
     throw new Error('Action was unable to complete. No event provided.');
   }
