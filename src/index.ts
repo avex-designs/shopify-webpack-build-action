@@ -253,19 +253,19 @@ const main = async () => {
     cwd: TMP_REPO_DIR,
   });
 
-  console.log(
-    `Clearing all files from the target branch "${config.BRANCH}"...`
-  );
-  const filesToClear = fg.stream(['**/*', '!.git'], {
-    absolute: true,
-    dot: true,
-    followSymbolicLinks: false,
-    cwd: TMP_REPO_DIR,
-  });
+  // console.log(
+  //   `Clearing all files from the target branch "${config.BRANCH}"...`
+  // );
+  // const filesToClear = fg.stream(['**/*', '!.git'], {
+  //   absolute: true,
+  //   dot: true,
+  //   followSymbolicLinks: false,
+  //   cwd: TMP_REPO_DIR,
+  // });
 
-  for await (const entry of filesToClear) {
-    await fs.promises.unlink(entry);
-  }
+  // for await (const entry of filesToClear) {
+  //   await fs.promises.unlink(entry);
+  // }
 
   console.log(
     `Copying all files from the target folder "${path.resolve(
@@ -273,7 +273,7 @@ const main = async () => {
       config.FOLDER
     )}"...`
   );
-  await exec(`cp -rT "${path.resolve(process.cwd(), config.FOLDER)}"/ ./`, {
+  await exec(`cp -ru "${path.resolve(process.cwd(), config.FOLDER)}"/ ./`, {
     env: CHILD_ENV,
     cwd: TMP_REPO_DIR,
   }).catch((err) => {
