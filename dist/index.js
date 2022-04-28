@@ -200,7 +200,8 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     //   await fs.promises.unlink(entry);
     // }
     console.log(`Copying all files from the target folder "${path.resolve(process.cwd(), config.FOLDER)}"...`);
-    yield exec(`cp -r "${path.resolve(process.cwd(), config.FOLDER)}"/ ./`, {
+    // cp -r css images js backups ar/
+    yield exec(`cp -r "${path.resolve(process.cwd(), 'assets')}"  "${path.resolve(process.cwd(), 'snippets')}" ./`, {
         env: CHILD_ENV,
         cwd: TMP_REPO_DIR,
     }).catch((err) => {
