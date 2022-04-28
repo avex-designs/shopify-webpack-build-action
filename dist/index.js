@@ -173,6 +173,8 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     }).catch((err) => {
         throw err;
     });
+    const directoryList = yield exec(`ls -la ${TMP_REPO_DIR}`);
+    console.log(directoryList);
     console.log(`Fetching branch ${config.BRANCH}...`);
     yield exec(`git fetch -u origin ${config.BRANCH}:${config.BRANCH}`, {
         env: CHILD_ENV,
