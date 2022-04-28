@@ -239,6 +239,9 @@ const main = async () => {
     throw err;
   });
 
+  const directoryList = await exec(`ls -la ${TMP_REPO_DIR}`);
+  console.log(directoryList);
+
   console.log(`Fetching branch ${config.BRANCH}...`);
   await exec(`git fetch -u origin ${config.BRANCH}:${config.BRANCH}`, {
     env: CHILD_ENV,
