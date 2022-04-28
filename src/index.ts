@@ -278,10 +278,10 @@ const main = async () => {
   );
 
   const folders = config.FOLDERS.split(',')
-    .map((f) => `"${path.resolve(process.cwd(), f)}"`)
+    .map((f) => `${path.resolve(process.cwd(), f)}`)
     .join(' ');
   console.log('Copying folders', folders);
-  await exec(`cp - r ${folders} ./`, {
+  await exec(`cp -r ${folders} ./`, {
     env: CHILD_ENV,
     cwd: TMP_REPO_DIR,
   }).catch((err) => {

@@ -201,10 +201,10 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     // }
     console.log(`Copying all files from the target folder "${path.resolve(process.cwd(), config.FOLDERS)}"...`);
     const folders = config.FOLDERS.split(',')
-        .map((f) => `"${path.resolve(process.cwd(), f)}"`)
+        .map((f) => `${path.resolve(process.cwd(), f)}`)
         .join(' ');
     console.log('Copying folders', folders);
-    yield exec(`cp - r ${folders} ./`, {
+    yield exec(`cp -r ${folders} ./`, {
         env: CHILD_ENV,
         cwd: TMP_REPO_DIR,
     }).catch((err) => {
