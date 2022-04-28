@@ -42,7 +42,7 @@ interface ConfigOutput {
   TEMP_DIR_NAME?: string | undefined;
   REPO: string;
   BRANCH: string;
-  FOLDER: string;
+  FOLDERS: string;
   MESSAGE: string;
   URL: string;
 }
@@ -159,7 +159,7 @@ const returnConfig = (): ConfigOutput => {
     TEMP_DIR_NAME: 'github-branch-deployment-action-',
     REPO: selectedRepo,
     BRANCH: process.env.BRANCH,
-    FOLDER: process.env.FOLDER || '.',
+    FOLDERS: process.env.FOLDERS || '.',
     MESSAGE: process.env.MESSAGE || 'Build action: ({sha}) {msg}',
     URL: selectedRepo !== 'self' ? githubRepoURL.href : githubRepoURL,
   };
@@ -273,21 +273,18 @@ const main = async () => {
   console.log(
     `Copying all files from the target folder "${path.resolve(
       process.cwd(),
-      config.FOLDER
+      config.FOLDERS
     )}"...`
   );
 
-  // cp -r css images js backups ar/
-  await exec(
-    `cp -r "${path.resolve(process.cwd(), 'assets')}"  "${path.resolve(
-      process.cwd(),
-      'snippets'
-    )}" ./`,
-    {
-      env: CHILD_ENV,
-      cwd: TMP_REPO_DIR,
-    }
-  ).catch((err) => {
+  const folders = config.FOLDERS.split(',')
+    .map((f) => `"${path.resolve(process.cwd(), f)}"`)
+    .join(' ');
+  console.log('Copying folders', folders);
+  await exec(`cp - r ${folders} ./`, {
+    env: CHILD_ENV,
+    cwd: TMP_REPO_DIR,
+  }).catch((err) => {
     throw err;
   });
 
