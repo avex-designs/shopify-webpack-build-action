@@ -226,7 +226,7 @@ const main = async () => {
     path.join(tmpdir(), config.TEMP_DIR_NAME)
   );
   const TMP_REPO_DIR = path.join(TMP_DIR, 'repo');
-  console.log(TMP_REPO_DIR);
+ 
   const SSH_AUTH_SOCK = path.join(TMP_DIR, 'ssh_agent.sock');
   const CHILD_ENV = Object.assign({}, process.env, {
     SSH_AUTH_SOCK,
@@ -277,6 +277,7 @@ const main = async () => {
   const folders = config.FOLDERS.split(',')
     .map((f) => `${path.resolve(process.cwd(), f)}`)
     .join(' ');
+    
   console.log('Copying folders', folders);
   await exec(`cp -r ${folders} ./`, {
     env: CHILD_ENV,
