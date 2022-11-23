@@ -173,11 +173,11 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
         throw err;
     });
     // `sed -i 's/ assets\/css-*.min.css/assets\/js-*.min.js/g' .gitignore`,
-    yield exec(`sed -i 's/ assets\/css-*.min.css,//' .gitignore`, {
-        env: CHILD_ENV,
-    }).catch((err) => {
-        throw err;
-    });
+    // await exec(`sed -i 's/ assets\/css-*.min.css,//' .gitignore`, {
+    //   env: CHILD_ENV,
+    // }).catch((err) => {
+    //   throw err;
+    // });
     console.log(`Fetching branch ${config.BRANCH}...`);
     yield exec(`git fetch -u origin ${config.BRANCH}:${config.BRANCH}`, {
         env: CHILD_ENV,
