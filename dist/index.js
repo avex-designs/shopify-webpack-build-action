@@ -221,12 +221,12 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     }).catch((err) => {
         throw err;
     });
-    // await exec(`nano .gitignore`, {
-    //   env: CHILD_ENV,
-    //   cwd: TMP_REPO_DIR,
-    // }).catch((err) => {
-    //   throw err;
-    // });
+    yield exec(`ls`, {
+        env: CHILD_ENV,
+        cwd: TMP_REPO_DIR,
+    }).catch((err) => {
+        throw err;
+    });
     console.log('Staging files...');
     yield exec(`git add -A`, { env: CHILD_ENV, cwd: TMP_REPO_DIR }).catch((err) => {
         throw err;
