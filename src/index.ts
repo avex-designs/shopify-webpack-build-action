@@ -302,12 +302,12 @@ const main = async () => {
     throw err;
   });
 
-  await exec(`nano .gitignore`, {
-    env: CHILD_ENV,
-    cwd: TMP_REPO_DIR,
-  }).catch((err) => {
-    throw err;
-  });
+  // await exec(`nano .gitignore`, {
+  //   env: CHILD_ENV,
+  //   cwd: TMP_REPO_DIR,
+  // }).catch((err) => {
+  //   throw err;
+  // });
 
   console.log('Staging files...');
   await exec(`git add -A`, { env: CHILD_ENV, cwd: TMP_REPO_DIR }).catch(
