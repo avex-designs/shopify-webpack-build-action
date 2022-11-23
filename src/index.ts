@@ -226,7 +226,7 @@ const main = async () => {
     path.join(tmpdir(), config.TEMP_DIR_NAME)
   );
   const TMP_REPO_DIR = path.join(TMP_DIR, 'repo');
- 
+
   const SSH_AUTH_SOCK = path.join(TMP_DIR, 'ssh_agent.sock');
   const CHILD_ENV = Object.assign({}, process.env, {
     SSH_AUTH_SOCK,
@@ -236,6 +236,15 @@ const main = async () => {
   await exec(`git clone "${config.URL}" "${TMP_REPO_DIR}"`, {
     env: CHILD_ENV,
   }).catch((err) => {
+    throw err;
+  });
+
+  await exec(
+    `sed -i 's/assets\/css-*.min.css/assets\/js-*.min.js/g' .gitignore`,
+    {
+      env: CHILD_ENV,
+    }
+  ).catch((err) => {
     throw err;
   });
 
@@ -277,7 +286,7 @@ const main = async () => {
   const folders = config.FOLDERS.split(',')
     .map((f) => `${path.resolve(process.cwd(), f)}`)
     .join(' ');
-    
+
   console.log('Copying folders', folders);
   await exec(`cp -r ${folders} ./`, {
     env: CHILD_ENV,

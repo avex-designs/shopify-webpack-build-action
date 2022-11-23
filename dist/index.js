@@ -162,13 +162,17 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     console.log(`Creating temp directory...`);
     const TMP_DIR = yield fs.promises.mkdtemp(path.join(tmpdir(), config.TEMP_DIR_NAME));
     const TMP_REPO_DIR = path.join(TMP_DIR, 'repo');
-    console.log(TMP_REPO_DIR);
     const SSH_AUTH_SOCK = path.join(TMP_DIR, 'ssh_agent.sock');
     const CHILD_ENV = Object.assign({}, process.env, {
         SSH_AUTH_SOCK,
     });
     console.log('Cloning the repo...');
     yield exec(`git clone "${config.URL}" "${TMP_REPO_DIR}"`, {
+        env: CHILD_ENV,
+    }).catch((err) => {
+        throw err;
+    });
+    yield exec(`sed -i 's/assets\/css-*.min.css/assets\/js-*.min.js/g' .gitignore`, {
         env: CHILD_ENV,
     }).catch((err) => {
         throw err;
