@@ -173,12 +173,12 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
         throw err;
     });
     // `sed -i 's/ assets\/css-*.min.css/assets\/js-*.min.js/g' .gitignore`,
-    yield exec(`sed -i '' 's|assets/js-\*.min.js||g' .gitignore`, {
+    yield exec(`sed -i 's|assets/js-\*.min.js||g' .gitignore`, {
         env: CHILD_ENV,
     }).catch((err) => {
         throw err;
     });
-    yield exec(`sed -i '' 's|assets/css-\*.min.css||g' .gitignore`, {
+    yield exec(`sed -i 's|assets/css-\*.min.css||g' .gitignore`, {
         env: CHILD_ENV,
     }).catch((err) => {
         throw err;
