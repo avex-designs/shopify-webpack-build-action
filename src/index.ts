@@ -240,18 +240,6 @@ const main = async () => {
   });
   // `sed -i 's/ assets\/css-*.min.css/assets\/js-*.min.js/g' .gitignore`,
 
-  await exec(`sed -i 's|assets/js-\*.min.js||g' .gitignore`, {
-    env: CHILD_ENV,
-  }).catch((err) => {
-    throw err;
-  });
-
-  await exec(`sed -i 's|assets/css-\*.min.css||g' .gitignore`, {
-    env: CHILD_ENV,
-  }).catch((err) => {
-    throw err;
-  });
-
   console.log(`Fetching branch ${config.BRANCH}...`);
   await exec(`git fetch -u origin ${config.BRANCH}:${config.BRANCH}`, {
     env: CHILD_ENV,
@@ -293,6 +281,28 @@ const main = async () => {
 
   console.log('Copying folders', folders);
   await exec(`cp -r ${folders} ./`, {
+    env: CHILD_ENV,
+    cwd: TMP_REPO_DIR,
+  }).catch((err) => {
+    throw err;
+  });
+
+  console.log('Editing gitignore');
+  await exec(`sed -i 's|assets/js-\*.min.js||g' .gitignore`, {
+    env: CHILD_ENV,
+    cwd: TMP_REPO_DIR,
+  }).catch((err) => {
+    throw err;
+  });
+
+  await exec(`sed -i 's|assets/css-\*.min.css||g' .gitignore`, {
+    env: CHILD_ENV,
+    cwd: TMP_REPO_DIR,
+  }).catch((err) => {
+    throw err;
+  });
+
+  await exec(`nano .gitignore`, {
     env: CHILD_ENV,
     cwd: TMP_REPO_DIR,
   }).catch((err) => {
