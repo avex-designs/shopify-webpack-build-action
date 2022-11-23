@@ -239,14 +239,14 @@ const main = async () => {
     throw err;
   });
 
-  await exec(
-    `sed -i 's/assets\/css-*.min.css/assets\/js-*.min.js/g' .gitignore`,
-    {
-      env: CHILD_ENV,
-    }
-  ).catch((err) => {
-    throw err;
-  });
+  // await exec(
+  //   `sed -i 's/assets\/css-*.min.css/assets\/js-*.min.js/g' .gitignore`,
+  //   {
+  //     env: CHILD_ENV,
+  //   }
+  // ).catch((err) => {
+  //   throw err;
+  // });
 
   console.log(`Fetching branch ${config.BRANCH}...`);
   await exec(`git fetch -u origin ${config.BRANCH}:${config.BRANCH}`, {
