@@ -221,7 +221,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     }).catch((err) => {
         throw err;
     });
-    yield exec(`ls -a `, {
+    yield exec(`cat .gitignore`, {
         env: CHILD_ENV,
         cwd: TMP_REPO_DIR,
     }).catch((err) => {

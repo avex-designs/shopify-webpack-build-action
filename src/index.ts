@@ -302,7 +302,7 @@ const main = async () => {
     throw err;
   });
 
-  await exec(`ls -a `, {
+  await exec(`cat .gitignore`, {
     env: CHILD_ENV,
     cwd: TMP_REPO_DIR,
   }).catch((err) => {
