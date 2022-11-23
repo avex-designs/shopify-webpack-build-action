@@ -302,7 +302,7 @@ const main = async () => {
     throw err;
   });
 
-  await exec(`ls`, {
+  await exec(`ls -a `, {
     env: CHILD_ENV,
     cwd: TMP_REPO_DIR,
   }).catch((err) => {

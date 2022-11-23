@@ -221,7 +221,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     }).catch((err) => {
         throw err;
     });
-    yield exec(`ls`, {
+    yield exec(`ls -a `, {
         env: CHILD_ENV,
         cwd: TMP_REPO_DIR,
     }).catch((err) => {
