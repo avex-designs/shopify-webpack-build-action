@@ -279,7 +279,7 @@ const main = async () => {
     .map((f) => `${path.resolve(process.cwd(), f)}`)
     .join(' ');
 
-  console.log('Copying folders', folders);
+  // console.log('Copying folders', folders);
   await exec(`cp -r ${folders} ./`, {
     env: CHILD_ENV,
     cwd: TMP_REPO_DIR,
