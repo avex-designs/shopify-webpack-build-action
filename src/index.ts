@@ -289,19 +289,19 @@ const main = async () => {
 
   console.log('Editing gitignore');
 
-  await exec(`sed -i "s|assets\/css-\*.min.css||g" .gitignore`, {
+  await exec(`sed -i "s|assets\/css-\*{1}.min.css||g" .gitignore`, {
     env: CHILD_ENV,
     cwd: TMP_REPO_DIR,
   }).catch((err) => {
     throw err;
   });
-  await exec(`sed -i "s|assets\/js||g" .gitignore`, {
+  await exec(`sed -i "s|assets\/js-\*{1}.min.js||g" .gitignore`, {
     env: CHILD_ENV,
     cwd: TMP_REPO_DIR,
   }).catch((err) => {
     throw err;
   });
-  await exec(`sed -i "s|snippets\/css-||g" .gitignore`, {
+  await exec(`sed -i "s|snippets\/css-\*{1}.css.liquid||g" .gitignore`, {
     env: CHILD_ENV,
     cwd: TMP_REPO_DIR,
   }).catch((err) => {
