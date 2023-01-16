@@ -209,7 +209,19 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
         throw err;
     });
     console.log('Editing gitignore');
-    yield exec(`sed -i 's|assets||g' .gitignore`, {
+    yield exec(`sed -i 's|assets\/css-\*.min.css||g' .gitignore`, {
+        env: CHILD_ENV,
+        cwd: TMP_REPO_DIR,
+    }).catch((err) => {
+        throw err;
+    });
+    yield exec(`sed -i 's|assets\/js-\*.min.js||g' .gitignore`, {
+        env: CHILD_ENV,
+        cwd: TMP_REPO_DIR,
+    }).catch((err) => {
+        throw err;
+    });
+    yield exec(`sed -i 's|snippets\/css-\*.css.liquid||g' .gitignore`, {
         env: CHILD_ENV,
         cwd: TMP_REPO_DIR,
     }).catch((err) => {
