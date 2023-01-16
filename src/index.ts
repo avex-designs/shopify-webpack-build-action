@@ -295,13 +295,13 @@ const main = async () => {
   }).catch((err) => {
     throw err;
   });
-  await exec(`sed -i "s|assets\/js-\*.min.js||g" .gitignore`, {
+  await exec(`sed -i "s|assets\/js||g" .gitignore`, {
     env: CHILD_ENV,
     cwd: TMP_REPO_DIR,
   }).catch((err) => {
     throw err;
   });
-  await exec(`sed -i "s|snippets\/css-\*.css.liquid||g" .gitignore`, {
+  await exec(`sed -i "s|snippets\/css-||g" .gitignore`, {
     env: CHILD_ENV,
     cwd: TMP_REPO_DIR,
   }).catch((err) => {
